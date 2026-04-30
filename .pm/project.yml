@@ -9,6 +9,7 @@ features:
   - "Customer-facing Excel lifecycle workbook with dashboard, lifecycle, idea bank, finance, pricing, pipeline, risks, launch, and customer ROI sheets."
   - "Project-local .pm metadata rules and templates."
   - "Deployment instructions and local installer script for the Laohe skill."
+  - "Root README in Laohe's voice for repository overview, installation, usage, and validation."
 requirements:
   - "Use current project directory for .pm metadata instead of fixed workspace paths."
   - "Keep material project updates documented with dated entries."
@@ -25,6 +26,7 @@ progress:
   - "Added explicit direct-address trigger phrases for Laohe skill activation."
   - "Expanded the profanity keyword pool from 200 entries to 1000 entries."
   - "Changed Laohe's casual profanity density rule to require a vulgar marker every 3-5 Chinese words or short clause."
+  - "Added a repository README that explains Laohe's scope, voice boundary, install flow, usage prompts, and verification."
 blockers: []
 next_actions:
   - "Open a new Codex thread after installing the laohe skill so skill discovery refreshes."
@@ -32,4 +34,5 @@ links:
   - "laohe/SKILL.md"
   - "laohe/assets/excel/laohe_product_lifecycle_templates.xlsx"
   - "DEPLOY.md"
+  - "README.md"
 last_reviewed: "2026-04-30"
