@@ -1,0 +1,11 @@
+Metric,Symbol,Downside,Base,Upside,Formula or Note
+Price per account,P,99,199,399,Monthly subscription or equivalent
+Accounts,N,20,75,200,Paying accounts
+Monthly churn,c,0.08,0.04,0.02,Logo churn
+Gross margin,GM,0.65,0.78,0.86,Revenue less variable costs
+CAC,CAC,900,650,450,Blended acquisition cost
+MRR,MRR,=C2*C3,=D2*D3,=E2*E3,P*N
+Gross profit,GP,=C7*C5,=D7*D5,=E7*E5,MRR*GM
+CAC payback months,Payback,=C6/C8,=D6/D8,=E6/E8,CAC/monthly gross profit per account
+LTV,LTV,=(C2*C5)/C4,=(D2*D5)/D4,=(E2*E5)/E4,(P*GM)/churn
+LTV/CAC,LTV_CAC,=C10/C6,=D10/D6,=E10/E6,LTV/CAC

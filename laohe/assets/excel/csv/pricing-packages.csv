@@ -1,0 +1,4 @@
+Package,Target Buyer,Price,Core Promise,Included,Limit,Upgrade Trigger
+Entry,Small team,99,Prove value quickly,Core workflow and email support,Low volume,Needs automation or integrations
+Core,Growing team,299,Run the workflow end to end,Automation integrations reporting,Standard volume,Needs governance or premium support
+Premium,Enterprise or high-risk buyer,999,Outcome assurance,Custom onboarding SLA advanced controls,Custom scope,Needs strategic services

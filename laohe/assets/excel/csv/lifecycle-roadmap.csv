@@ -1,0 +1,12 @@
+Phase,Artifact,Owner,Start,Due,Exit Criteria,Status
+Intake,One-page strategy,,,"","Success metric and buyer/user are clear",Draft
+Creative,Creative engineering ideas,,,"","Shortlist is scored by feasibility distribution monetization and surprise",Draft
+Market,Market and ICP research,,,"","Time-sensitive claims are source-checked",Draft
+Opportunity,Opportunity brief,,,"","Weighted score and decision are documented",Draft
+Product,PRD,,,"","P0 scope and acceptance criteria are approved",Draft
+Architecture,Architecture RFC,,,"","Interfaces risks and rollout plan are reviewed",Draft
+Project,Project plan,,,"","Milestones owners and risk register are active",Draft
+Quality,Test plan,,,"","Release gates and evidence requirements are defined",Draft
+Launch,GTM plan,,,"","Audience offer channels and funnel targets are ready",Draft
+Finance,Unit economics model,,,"","Payback LTV/CAC and sensitivity are reviewed",Draft
+Review,Postmortem,,,"","Lessons and next actions are assigned",Draft

@@ -1,0 +1,2 @@
+Account,Segment,Buyer,Trigger,Stage,ARR Potential,Next Step,Owner,Due,Probability,Weighted ARR
+Example Co,Ops,VP Operations,Manual reporting pain,Discovery,12000,Send ROI calculator,,2026-05-08,0.2,=F2*J2

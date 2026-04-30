@@ -1,0 +1,8 @@
+Workstream,Item,Owner,Due,Status,Evidence
+Product,P0 acceptance criteria signed off,,,Not Started,
+Engineering,Production observability enabled,,,Not Started,
+QA,Release gate passed,,,Not Started,
+GTM,Landing page published,,,Not Started,
+Sales,First 50 target accounts loaded,,,Not Started,
+Finance,Pricing and ROI calculator reviewed,,,Not Started,
+Support,Onboarding and FAQ ready,,,Not Started,

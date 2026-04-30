@@ -1,0 +1,3 @@
+Idea,Cross-domain Combo,Engineering Lever,Buyer/User,Distribution,Monetization,Feasibility 1-5,Value 1-5,Surprise 1-5,Weighted Score,48-hour Test,Risk
+Spreadsheet-to-SaaS audit,Excel workflow + SaaS automation,Import/export plus workflow automation,Ops manager,Template funnel,Paid audit then subscription,4,4,3,=0.22*4+0.18*4+0.16*4+0.14*4+0.12*3+0.10*4+0.08*3,Publish template and sell 3 paid audits,No urgent buyer
+Compliance evidence bot,Regulation + document intelligence,Agent workflow and evidence collection,Compliance lead,Founder-led outbound,Monthly compliance package,3,5,4,=0.22*3+0.18*4+0.16*3+0.14*5+0.12*4+0.10*4+0.08*4,Interview 5 compliance leads,Procurement friction

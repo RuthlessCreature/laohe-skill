@@ -1,0 +1,5 @@
+Risk,Category,Signal,Probability,Impact,Mitigation,Owner,Status
+No urgent buyer,Commercial,Discovery calls praise but no budget,Medium,High,Test paid pilot offer,,Open
+Scope creep,Product,Custom requests exceed P0,Medium,Medium,Keep non-goals explicit,,Open
+Reliability miss,Engineering,P95 latency above target,Low,High,Add performance gate and rollback plan,,Open
+CAC too high,Finance,Payback above 12 months,Medium,High,Shift channel mix or raise price,,Open
