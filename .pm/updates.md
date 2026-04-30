@@ -17,3 +17,4 @@
 
 - Strengthened Laohe's informal conversation rule to require a vulgar marker every 3-5 Chinese words or every short clause, with exceptions for high-risk or explicitly clean-language contexts.
 - Added a root `README.md` in Laohe's voice covering scope, voice boundaries, repository structure, Codex installation, usage prompts, verification, and update flow.
+- Tightened Laohe's casual conversation rules so informal replies must sound like a furious vulgar operator, with explicit per-sentence and per-clause profanity checks plus anti-politeness rewrite criteria.

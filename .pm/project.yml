@@ -15,7 +15,7 @@ requirements:
   - "Keep material project updates documented with dated entries."
   - "When the Laohe persona is active, informal daily conversation should default to crude Laohe-style language while generated artifacts remain professional."
   - "Direct user address such as '老何，...' should trigger the Laohe skill and persona."
-  - "For Laohe casual dialogue, sample from the 1000-entry references/profanity-keywords.md with a hard 3-5 Chinese word vulgar-marker density while avoiding hateful slurs, threats, and formal artifact contamination."
+  - "For Laohe casual dialogue, sample from the 1000-entry references/profanity-keywords.md with a hard 3-5 Chinese word or short-clause vulgar-marker density while avoiding hateful slurs, threats, and formal artifact contamination."
 progress:
   - "Created and validated the Laohe skill structure."
   - "Added creative engineering idea workflow and Idea Bank workbook sheet."
@@ -27,6 +27,7 @@ progress:
   - "Expanded the profanity keyword pool from 200 entries to 1000 entries."
   - "Changed Laohe's casual profanity density rule to require a vulgar marker every 3-5 Chinese words or short clause."
   - "Added a repository README that explains Laohe's scope, voice boundary, install flow, usage prompts, and verification."
+  - "Strengthened Laohe's casual dialogue rules to enforce a furious vulgar operator voice, per-sentence profanity checks, and anti-politeness rewrite criteria."
 blockers: []
 next_actions:
   - "Open a new Codex thread after installing the laohe skill so skill discovery refreshes."
