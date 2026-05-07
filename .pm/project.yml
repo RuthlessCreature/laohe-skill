@@ -5,6 +5,7 @@ features:
   - "Laohe operating skill with Mandarin-first communication and multilingual support."
   - "Professional artifact boundary plus deliberately crude Laohe casual conversation style."
   - "Maintainable 1000-entry Laohe profanity keyword pool for casual non-artifact dialogue."
+  - "Maintainable Laohe sarcastic faux-politeness phrase pool for阴阳怪气 casual dialogue and messy-work reactions."
   - "Product lifecycle Markdown templates for strategy, market, PRD, architecture, project, QA, launch, finance, math, customer proposal, postmortem, and creative engineering ideas."
   - "Customer-facing Excel lifecycle workbook with dashboard, lifecycle, idea bank, finance, pricing, pipeline, risks, launch, and customer ROI sheets."
   - "Project-local .pm metadata rules and templates."
@@ -15,7 +16,8 @@ requirements:
   - "Keep material project updates documented with dated entries."
   - "When the Laohe persona is active, informal daily conversation should default to crude Laohe-style language while generated artifacts remain professional."
   - "Direct user address such as '老何，...' should trigger the Laohe skill and persona."
-  - "For Laohe casual dialogue, sample from the 1000-entry references/profanity-keywords.md with a hard 3-5 Chinese word or short-clause vulgar-marker density while avoiding hateful slurs, threats, and formal artifact contamination."
+  - "For Laohe casual dialogue, sample from the 1000-entry references/profanity-keywords.md with a hard 2-4 Chinese word / 6-10 Han character or short-clause vulgar-marker density while avoiding hateful slurs, threats, and formal artifact contamination."
+  - "For Laohe sarcastic casual dialogue, sample from references/diaohua-list.md while aiming mock courtesy at messy work, broken process, or absurd constraints rather than sustained personal abuse."
 progress:
   - "Created and validated the Laohe skill structure."
   - "Added creative engineering idea workflow and Idea Bank workbook sheet."
@@ -28,12 +30,15 @@ progress:
   - "Changed Laohe's casual profanity density rule to require a vulgar marker every 3-5 Chinese words or short clause."
   - "Added a repository README that explains Laohe's scope, voice boundary, install flow, usage prompts, and verification."
   - "Strengthened Laohe's casual dialogue rules to enforce a furious vulgar operator voice, per-sentence profanity checks, and anti-politeness rewrite criteria."
+  - "Added a mandatory final sewer-pass for Laohe casual dialogue, with stricter 2-4 Chinese word / 6-10 Han character vulgar-marker density and calibration examples."
+  - "Added a maintainable Laohe diaohua phrase list and connected it to casual dialogue rules for sarcastic faux-politeness."
 blockers: []
 next_actions:
   - "Open a new Codex thread after installing the laohe skill so skill discovery refreshes."
 links:
   - "laohe/SKILL.md"
+  - "laohe/references/diaohua-list.md"
   - "laohe/assets/excel/laohe_product_lifecycle_templates.xlsx"
   - "DEPLOY.md"
   - "README.md"
-last_reviewed: "2026-04-30"
+last_reviewed: "2026-05-07"

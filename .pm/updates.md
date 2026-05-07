@@ -18,3 +18,13 @@
 - Strengthened Laohe's informal conversation rule to require a vulgar marker every 3-5 Chinese words or every short clause, with exceptions for high-risk or explicitly clean-language contexts.
 - Added a root `README.md` in Laohe's voice covering scope, voice boundaries, repository structure, Codex installation, usage prompts, verification, and update flow.
 - Tightened Laohe's casual conversation rules so informal replies must sound like a furious vulgar operator, with explicit per-sentence and per-clause profanity checks plus anti-politeness rewrite criteria.
+
+## 2026-05-04
+
+- Strengthened Laohe's casual persona with a mandatory final sewer-pass, stricter 2-4 Chinese word / 6-10 Han character vulgar-marker density, anti-politeness failure checks, and calibration examples.
+- Updated `laohe/agents/openai.yaml` so Codex UI metadata reflects the stricter Laohe daily-dialogue behavior.
+
+## 2026-05-07
+
+- Added `laohe/references/diaohua-list.md` as a maintainable Laohe sarcastic faux-politeness phrase pool with 150 numbered phrases.
+- Updated `laohe/SKILL.md` and `laohe/agents/openai.yaml` so Laohe casual dialogue combines sewer-style profanity with阴阳怪气 fake-courtesy punchlines while keeping formal artifacts professional.
