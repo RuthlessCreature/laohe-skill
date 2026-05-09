@@ -2,7 +2,7 @@
 
 老何不是摆在 Codex 旁边喊两句口号的吉祥物。老何是给一人软件公司用的执行口：你丢进来一个模糊目标，它负责把这团乱麻拧成文档、路线图、PRD、架构、测试、GTM、财务模型、客户方案，最后还得有下一步，别他妈只会热血。
 
-这个仓库里的 Codex skill 在 [`laohe/`](laohe/)。
+这个仓库里的 Laohe skill 在 [`laohe/`](laohe/)，可部署到 Codex 和 opencode。
 
 ## 老何管什么
 
@@ -25,7 +25,7 @@
 laohe/
   SKILL.md                              # skill 主说明和触发规则
   agents/openai.yaml                    # Codex UI 展示元数据
-  references/                           # 生命周期、GTM、财务、创意工程等参考
+  references/                           # 生命周期、GTM、财务、创意工程、QualityAGENTS 质量参考
   assets/markdown/                      # PRD、RFC、GTM、财务等 Markdown 模板
   assets/excel/                         # 客户/经营用 Excel 模板和 CSV 源
   assets/project-metadata/              # .pm 项目元数据模板
@@ -34,7 +34,7 @@ scripts/install_laohe.sh                # macOS/Linux 本地安装脚本
 DEPLOY.md                               # 更详细的部署说明
 ```
 
-## 安装到 Codex
+## 安装到 Codex 和 opencode
 
 ### macOS / Linux
 
@@ -44,10 +44,11 @@ DEPLOY.md                               # 更详细的部署说明
 ./scripts/install_laohe.sh
 ```
 
-它会把 `laohe/` 复制到：
+它会把 `laohe/` 同步到：
 
 ```bash
 ${CODEX_HOME:-$HOME/.codex}/skills/laohe
+${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/skills}/laohe
 ```
 
 ### Windows PowerShell
@@ -61,7 +62,7 @@ if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
 Copy-Item ".\laohe" $dest -Recurse
 ```
 
-安装后开一个新的 Codex thread，让 skill 索引刷新。别在旧 thread 里硬等，那个没用。
+安装后开一个新的 Codex thread 或 opencode session，让 skill 索引刷新。别在旧会话里硬等，那个没用。
 
 ## 怎么叫老何
 
@@ -91,6 +92,7 @@ Copy-Item ".\laohe" $dest -Recurse
 
 ```bash
 test -f "${CODEX_HOME:-$HOME/.codex}/skills/laohe/SKILL.md" && echo "laohe installed"
+test -f "${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/skills}/laohe/SKILL.md" && echo "laohe installed for opencode"
 ```
 
 检查 skill 结构：
@@ -109,4 +111,4 @@ python -X utf8 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py .
 ./scripts/install_laohe.sh
 ```
 
-然后开新 Codex thread 验证。老何这东西不是玄学，改了、装了、重开、测试，闭环走完才算完。
+然后开新 Codex thread 或 opencode session 验证。老何这东西不是玄学，改了、装了、重开、测试，闭环走完才算完。

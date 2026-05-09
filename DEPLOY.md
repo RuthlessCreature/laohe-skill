@@ -1,8 +1,8 @@
 # Laohe Skill Deployment
 
-This project contains a Codex skill at `laohe/`. Deploy by copying that whole folder to the Codex skills directory. The destination folder name must remain `laohe` because `SKILL.md` declares `name: laohe`.
+This project contains a Laohe skill at `laohe/`. Deploy by copying that whole folder to the host skills directory. The destination folder name must remain `laohe` because `SKILL.md` declares `name: laohe`.
 
-## Local Codex on macOS/Linux
+## Local Codex And opencode On macOS/Linux
 
 From this project root:
 
@@ -10,14 +10,24 @@ From this project root:
 ./scripts/install_laohe.sh
 ```
 
-Equivalent manual command:
+The script installs both:
+
+```bash
+${CODEX_HOME:-$HOME/.codex}/skills/laohe
+${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/skills}/laohe
+```
+
+Equivalent manual commands:
 
 ```bash
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-rsync -a --delete ./laohe/ "${CODEX_HOME:-$HOME/.codex}/skills/laohe/"
+rsync -a --delete --exclude='.DS_Store' ./laohe/ "${CODEX_HOME:-$HOME/.codex}/skills/laohe/"
+
+mkdir -p "${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/skills}"
+rsync -a --delete --exclude='.DS_Store' ./laohe/ "${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/skills}/laohe/"
 ```
 
-Open a new Codex thread after installation so the skill index is refreshed. Then ask for Laohe explicitly, for example:
+Open a new Codex thread or opencode session after installation so the skill index is refreshed. Then ask for Laohe explicitly, for example:
 
 ```text
 用老何帮我把这个产品从点子推进到 MVP 和商业化计划。
@@ -32,7 +42,7 @@ Open a new Codex thread after installation so the skill index is refreshed. Then
 ./scripts/install_laohe.sh
 ```
 
-3. Start a new Codex thread and invoke 老何.
+3. Start a new Codex thread or opencode session and invoke 老何.
 
 ## Windows PowerShell
 
@@ -45,7 +55,7 @@ if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
 Copy-Item ".\laohe" $dest -Recurse
 ```
 
-Open a new Codex thread after installation.
+Open a new Codex thread or opencode session after installation.
 
 ## Verify
 
@@ -53,6 +63,7 @@ Check the installed files:
 
 ```bash
 test -f "${CODEX_HOME:-$HOME/.codex}/skills/laohe/SKILL.md" && echo "laohe installed"
+test -f "${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/skills}/laohe/SKILL.md" && echo "laohe installed for opencode"
 ```
 
 Optional structure validation from this project root:

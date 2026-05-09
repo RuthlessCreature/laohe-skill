@@ -28,3 +28,8 @@
 
 - Added `laohe/references/diaohua-list.md` as a maintainable Laohe sarcastic faux-politeness phrase pool with 150 numbered phrases.
 - Updated `laohe/SKILL.md` and `laohe/agents/openai.yaml` so Laohe casual dialogue combines sewer-style profanity with阴阳怪气 fake-courtesy punchlines while keeping formal artifacts professional.
+
+## 2026-05-09
+
+- Merged the root `hello/` folder into `laohe/references/qualityagents/` as an optional QualityAGENTS command and quality reference pack while preserving Laohe's original persona and style rules.
+- Updated `laohe/SKILL.md`, `laohe/agents/openai.yaml`, `README.md`, `DEPLOY.md`, and `scripts/install_laohe.sh` so Laohe can route to QualityAGENTS references when useful and deploy to both Codex and opencode.

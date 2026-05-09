@@ -1,4 +1,4 @@
-summary: "Laohe Codex skill for documentation-first one-person-company product, engineering, project, business, finance, math, and creative engineering workflows."
+summary: "Laohe skill for Codex and opencode with documentation-first one-person-company product, engineering, project, business, finance, math, and creative engineering workflows."
 status: "active"
 phase: "inferred: skill build and template refinement"
 features:
@@ -6,10 +6,11 @@ features:
   - "Professional artifact boundary plus deliberately crude Laohe casual conversation style."
   - "Maintainable 1000-entry Laohe profanity keyword pool for casual non-artifact dialogue."
   - "Maintainable Laohe sarcastic faux-politeness phrase pool for阴阳怪气 casual dialogue and messy-work reactions."
+  - "Merged QualityAGENTS command and quality reference pack for optional workflow, verification, UI, test, security, performance, API, data, debug, review, and writing guidance."
   - "Product lifecycle Markdown templates for strategy, market, PRD, architecture, project, QA, launch, finance, math, customer proposal, postmortem, and creative engineering ideas."
   - "Customer-facing Excel lifecycle workbook with dashboard, lifecycle, idea bank, finance, pricing, pipeline, risks, launch, and customer ROI sheets."
   - "Project-local .pm metadata rules and templates."
-  - "Deployment instructions and local installer script for the Laohe skill."
+  - "Deployment instructions and local installer script for Codex and opencode."
   - "Root README in Laohe's voice for repository overview, installation, usage, and validation."
 requirements:
   - "Use current project directory for .pm metadata instead of fixed workspace paths."
@@ -18,6 +19,7 @@ requirements:
   - "Direct user address such as '老何，...' should trigger the Laohe skill and persona."
   - "For Laohe casual dialogue, sample from the 1000-entry references/profanity-keywords.md with a hard 2-4 Chinese word / 6-10 Han character or short-clause vulgar-marker density while avoiding hateful slurs, threats, and formal artifact contamination."
   - "For Laohe sarcastic casual dialogue, sample from references/diaohua-list.md while aiming mock courtesy at messy work, broken process, or absurd constraints rather than sustained personal abuse."
+  - "Use references/qualityagents/ as an optional quality/workflow reference pack without overriding Laohe's persona, artifact boundary, .pm rules, or output contract."
 progress:
   - "Created and validated the Laohe skill structure."
   - "Added creative engineering idea workflow and Idea Bank workbook sheet."
@@ -32,13 +34,15 @@ progress:
   - "Strengthened Laohe's casual dialogue rules to enforce a furious vulgar operator voice, per-sentence profanity checks, and anti-politeness rewrite criteria."
   - "Added a mandatory final sewer-pass for Laohe casual dialogue, with stricter 2-4 Chinese word / 6-10 Han character vulgar-marker density and calibration examples."
   - "Added a maintainable Laohe diaohua phrase list and connected it to casual dialogue rules for sarcastic faux-politeness."
+  - "Merged the former root hello folder into Laohe as a QualityAGENTS reference pack and updated deployment to install to Codex and opencode."
 blockers: []
 next_actions:
   - "Open a new Codex thread after installing the laohe skill so skill discovery refreshes."
 links:
   - "laohe/SKILL.md"
   - "laohe/references/diaohua-list.md"
+  - "laohe/references/qualityagents/index.md"
   - "laohe/assets/excel/laohe_product_lifecycle_templates.xlsx"
   - "DEPLOY.md"
   - "README.md"
-last_reviewed: "2026-05-07"
+last_reviewed: "2026-05-09"
