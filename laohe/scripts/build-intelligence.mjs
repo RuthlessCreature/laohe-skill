@@ -47,8 +47,8 @@ const COMMENT_PATTERNS = {
 };
 
 const FUNCTION_PATTERNS = {
-  javascript: /(?:(?:export\s+)?(?:async\s+)?(?:function\s+)?(\w+)\s*(?:<[^>]*>\s*)?\(|?:(?:export\s+)?(?:async\s+)?(?:const|let|var)\s+(\w+)\s*=\s*(?:async\s+)?(?:\([^)]*\)|[^=])*\s*=>)/g,
-  typescript: /(?:(?:export\s+)?(?:async\s+)?(?:function\s+)?(\w+)\s*(?:<[^>]*>\s*)?\(|?:(?:export\s+)?(?:async\s+)?(?:const|let|var)\s+(\w+)\s*=\s*(?:async\s+)?(?:\([^)]*\)|[^=])*\s*=>)/g,
+  javascript: /(?:export\s+)?(?:async\s+)?function\s+(\w+)|(?:export\s+)?(?:async\s+)?(?:const|let|var)\s+(\w+)\s*=/g,
+  typescript: /(?:export\s+)?(?:async\s+)?function\s+(\w+)|(?:export\s+)?(?:async\s+)?(?:const|let|var)\s+(\w+)\s*=/g,
   python: /(?:^def\s+(\w+)|(?:^class\s+(\w+))|(?:^async\s+def\s+(\w+)))/gm,
   go: /(?:func\s+(?:\([^)]+\)\s+)?(\w+)|type\s+(\w+)\s+struct)/g,
   java: /(?:(?:public|private|protected)\s+(?:static\s+)?(?:final\s+)?(?:[\w<>[\],\s]+)\s+(\w+)\s*\(|class\s+(\w+))/g,

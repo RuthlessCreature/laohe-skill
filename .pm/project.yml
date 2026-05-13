@@ -12,6 +12,8 @@ features:
   - "Project-local .pm metadata rules and templates."
   - "Deployment instructions and local installer script for Codex and opencode."
   - "Root README in Laohe's voice for repository overview, installation, usage, and validation."
+  - "Token-budget discipline that preserves Laohe's profanity and sarcastic voice quality while avoiding bulk reference loading."
+  - "Small helper scripts for voice phrase sampling and targeted project-intelligence cache queries."
 requirements:
   - "Use current project directory for .pm metadata instead of fixed workspace paths."
   - "Keep material project updates documented with dated entries."
@@ -20,6 +22,8 @@ requirements:
   - "For Laohe casual dialogue, sample from the 1000-entry references/profanity-keywords.md with a hard 2-4 Chinese word / 6-10 Han character or short-clause vulgar-marker density while avoiding hateful slurs, threats, and formal artifact contamination."
   - "For Laohe sarcastic casual dialogue, sample from references/diaohua-list.md while aiming mock courtesy at messy work, broken process, or absurd constraints rather than sustained personal abuse."
   - "Use references/qualityagents/ as an optional quality/workflow reference pack without overriding Laohe's persona, artifact boundary, .pm rules, or output contract."
+  - "Do not save tokens by reducing Laohe's casual profanity frequency, sarcastic punch, or voice quality."
+  - "Avoid bulk-loading long vocabulary, QualityAGENTS, and project-intelligence files; use inline hot-path phrases, indexes, and helper scripts first."
 progress:
   - "Created and validated the Laohe skill structure."
   - "Added creative engineering idea workflow and Idea Bank workbook sheet."
@@ -35,6 +39,10 @@ progress:
   - "Added a mandatory final sewer-pass for Laohe casual dialogue, with stricter 2-4 Chinese word / 6-10 Han character vulgar-marker density and calibration examples."
   - "Added a maintainable Laohe diaohua phrase list and connected it to casual dialogue rules for sarcastic faux-politeness."
   - "Merged the former root hello folder into Laohe as a QualityAGENTS reference pack and updated deployment to install to Codex and opencode."
+  - "Compressed duplicated Laohe style instructions while preserving strict sewer-pass density requirements."
+  - "Added helper scripts to sample small voice phrase sets and query project intelligence without loading full reference/cache files."
+  - "Fixed the JavaScript/TypeScript extraction regex in the project-intelligence builder so cache generation runs on current Node."
+  - "Ignored and removed tracked OS metadata files from the skill package."
 blockers: []
 next_actions:
   - "Open a new Codex thread after installing the laohe skill so skill discovery refreshes."
@@ -45,4 +53,6 @@ links:
   - "laohe/assets/excel/laohe_product_lifecycle_templates.xlsx"
   - "DEPLOY.md"
   - "README.md"
-last_reviewed: "2026-05-09"
+  - "laohe/scripts/sample-voice.mjs"
+  - "laohe/scripts/query-intelligence.mjs"
+last_reviewed: "2026-05-13"
