@@ -1,50 +1,100 @@
 # 老何 Laohe Skill
 
-老何不是摆在 Codex 旁边喊两句口号的吉祥物。老何是给一人软件公司用的执行口：你丢进来一个模糊目标，它负责把这团乱麻拧成文档、路线图、PRD、架构、测试、GTM、财务模型、客户方案，最后还得有下一步，别他妈只会热血。
+老何不是摆在 Codex 旁边喊两句口号的吉祥物。老何是你他妈一人软件公司的操盘手——丢进来一个模糊目标，拧成文档、路线图、PRD、架构、测试、GTM、财务模型、客户方案，最后还他妈得有下一步，别只会热血。
 
-这个仓库里的 Laohe skill 在 [`laohe/`](laohe/)，可部署到 Codex 和 opencode。
+这个仓库的 Laohe skill 在 [`laohe/`](laohe/)，可部署到 Codex 和 opencode。
 
 ## 老何管什么
 
-- 产品从 0 到 1：策略、ICP、机会判断、PRD、验收标准。
-- 工程落地：架构 RFC、项目计划、测试计划、发布门槛。
-- 商业化：定位、定价、销售动作、上线计划、客户 ROI。
-- 财务和数学：单位经济、敏感性分析、工程问题数学化。
-- 创意工程：骚点子、跨界组合、能验证也能卖的产品楔子。
-- 项目记忆：为工程项目维护 `.pm/project.yml` 和 `.pm/updates.md`。
+- **产品从 0 到 1**：策略、ICP、机会判断、PRD、验收标准，别他妈在需求阶段打转。
+- **工程落地**：架构 RFC、项目计划、测试计划、发布门槛，别让代码烂在本地。
+- **商业化**：定位、定价、销售动作、上线计划、客户 ROI，活儿再好卖不掉等于零。
+- **财务和数学**：单位经济、敏感性分析、工程问题数学化，别靠感觉拍脑袋。
+- **创意工程**：骚点子、跨界组合、能验证也能卖的产品楔子，不是光好玩的。
+- **项目记忆**：维护 `.pm/project.yml` 和 `.pm/updates.md`，这项目什么阶段、有什么坑、下一步该干啥，一目了然。
+- **项目智能缓存**：扫一遍代码库，把模块、函数、API、数据模型、依赖关系全写进 `.pm/intelligence.json`。下次进来直接读缓存，不用他妈重新扫一遍烧 token。
 
 ## 老何怎么说话
 
-正式交付物要专业，代码、README、客户材料、模型和项目文档不能胡来。日常对话可以很糙，尤其用户明确叫“老何”的时候，老何会按 skill 里的规则进入更脏、更直接的下水道口吻。
+正式交付物要干净：代码、README、客户材料、模板，不能胡来。日常对话可以很糙——尤其用户直接叫"老何"的时候，老何会切换到下水道口吻，满嘴喷粪加阴阳怪气假客气。
 
-一句话：交付物干净，聊天嘴脏；活儿要能落地，废话少整。
+检查标准：如果随便删两句脏话就变成客户支持机器人的口吻，那说明不够脏，重写。
+
+一句话：**交付物干净，聊天嘴脏；活儿要能落地，废话少整。**
+
+## 项目智能缓存
+
+这是老何最他妈实用的功能之一。
+
+### 扫描什么
+
+每次老何进一个项目目录，先查 `.pm/intelligence.json`：
+
+- **模块清单**：每个文件路径、语言、功能描述、导出的函数、API 端点、数据模型、依赖谁。
+- **API 端点**：method + path + 在哪处理的。
+- **数据模型**：interface、class、type，拎出来列清楚。
+- **技术栈**：TypeScript、Go、Python、Docker，自动检测不废话。
+- **外部依赖**：项目外面的包，import 了哪些。
+
+### 怎么省 token
+
+第一次扫完写进 `.pm/intelligence.json`，下次进来直接读。不再跑 glob/grep 把代码全文烧一遍。
+
+缓存超过 7 天会自动重新扫。你也可以直接喊：
+
+```
+老何，重新扫一遍这破项目。
+```
+
+### 缓存结构示例
+
+```json
+{
+  "scanDate": "2026-05-13T...",
+  "techStack": ["typescript", "node", "docker"],
+  "modules": [
+    {
+      "path": "src/services/auth.ts",
+      "lang": "typescript",
+      "description": "认证服务——login/logout/refreshToken三个接口，JWT发放验证",
+      "exports": ["login", "logout", "refreshToken"],
+      "endpoints": [
+        {"method": "POST", "path": "/api/auth/login"}
+      ]
+    }
+  ],
+  "apiEndpoints": [...],
+  "dataModels": ["User", "Token"],
+  "externalDeps": ["express", "jsonwebtoken"]
+}
+```
 
 ## 仓库结构
 
 ```text
 laohe/
-  SKILL.md                              # skill 主说明和触发规则
+  SKILL.md                              # skill 主说明、触发规则、下水道口吻规则
   agents/openai.yaml                    # Codex UI 展示元数据
-  references/                           # 生命周期、GTM、财务、创意工程、QualityAGENTS 质量参考
-  assets/markdown/                      # PRD、RFC、GTM、财务等 Markdown 模板
+  references/                           # 生命周期、GTM、财务、创意工程、脏话词库、屌话list
+  assets/markdown/                      # 12 个生命周期阶段的 Markdown 模板
   assets/excel/                         # 客户/经营用 Excel 模板和 CSV 源
   assets/project-metadata/              # .pm 项目元数据模板
-  scripts/build_lifecycle_workbook.mjs  # 重新生成生命周期工作簿
+  scripts/
+    build-intelligence.mjs              # 项目智能缓存扫描脚本
+    build_lifecycle_workbook.mjs        # 生命周期 Excel 工作簿生成
 scripts/install_laohe.sh                # macOS/Linux 本地安装脚本
-DEPLOY.md                               # 更详细的部署说明
+DEPLOY.md                               # 各种平台的详细部署说明
 ```
 
 ## 安装到 Codex 和 opencode
 
 ### macOS / Linux
 
-从仓库根目录运行：
-
 ```bash
 ./scripts/install_laohe.sh
 ```
 
-它会把 `laohe/` 同步到：
+会同步到：
 
 ```bash
 ${CODEX_HOME:-$HOME/.codex}/skills/laohe
@@ -53,16 +103,21 @@ ${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}
 
 ### Windows PowerShell
 
-从仓库根目录运行：
-
 ```powershell
+# Codex
 $dest = if ($env:CODEX_HOME) { Join-Path $env:CODEX_HOME "skills\laohe" } else { Join-Path $HOME ".codex\skills\laohe" }
 New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
 if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
 Copy-Item ".\laohe" $dest -Recurse
+
+# opencode
+$odest = Join-Path $HOME ".config\opencode\skills\laohe"
+New-Item -ItemType Directory -Force (Split-Path $odest) | Out-Null
+if (Test-Path $odest) { Remove-Item $odest -Recurse -Force }
+Copy-Item ".\laohe" $odest -Recurse
 ```
 
-安装后开一个新的 Codex thread 或 opencode session，让 skill 索引刷新。别在旧会话里硬等，那个没用。
+装完**开新对话**，别在旧会话里硬等，skill 索引只在启动时刷新。
 
 ## 怎么叫老何
 
@@ -70,45 +125,30 @@ Copy-Item ".\laohe" $dest -Recurse
 
 ```text
 老何，帮我把这个产品从点子推进到 MVP 和商业化计划。
+老何，重新扫这个项目。
+老何，给这破需求磕一个然后出 PRD。
 ```
 
-或者：
+适合甩给老何的活儿：
 
-```text
-用老何模式，给我做一个 B2B SaaS 的 PRD、架构草案、GTM 和财务假设。
-```
-
-适合触发老何的任务：
-
-- “我有个产品想法，帮我判断做不做。”
-- “把这个项目推进到可开发的 PRD 和架构。”
-- “给客户做一份 ROI 明确的方案。”
-- “想几个骚点子，但别只好玩，要能卖。”
-- “把这个工程问题形式化，给我变量、约束和决策阈值。”
-
-## 验证
-
-检查 skill 文件是否装上：
-
-```bash
-test -f "${CODEX_HOME:-$HOME/.codex}/skills/laohe/SKILL.md" && echo "laohe installed"
-test -f "${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/skills}/laohe/SKILL.md" && echo "laohe installed for opencode"
-```
-
-检查 skill 结构：
-
-```bash
-python -X utf8 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py ./laohe
-```
-
-`-X utf8` 是给 Windows 这种默认编码容易抽风的环境准备的。如果 Python 环境缺 `yaml`，装一下 `PyYAML` 或换一个带 `yaml` 的环境。别让这点小事把活儿卡住。
+- "我有个产品想法，帮我判断做不做。"
+- "把这个项目推进到可开发的 PRD 和架构。"
+- "给客户做一份 ROI 明确的方案。"
+- "想几个骚点子，但别只好玩，要能卖。"
+- "把这个工程问题形式化，给我变量、约束和决策阈值。"
+- "扫一下这项目的代码结构，告诉我都有什么模块。"
 
 ## 更新
 
-改完源 skill 后，重新运行：
+改完源 skill 后：
 
 ```bash
+# macOS/Linux
 ./scripts/install_laohe.sh
+
+# Windows
+Copy-Item ".\laohe" $dest -Recurse -Force
+Copy-Item ".\laohe" $odest -Recurse -Force
 ```
 
-然后开新 Codex thread 或 opencode session 验证。老何这东西不是玄学，改了、装了、重开、测试，闭环走完才算完。
+然后开新对话验证。老何这东西不是玄学——改了、装了、重开、验证，闭环走完才算完。
