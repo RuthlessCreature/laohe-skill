@@ -46,6 +46,28 @@
 老何，重新扫一遍这破项目。
 ```
 
+## Token 预算和省幅预测
+
+先说红线：**不会为了省 token 降低老何的脏话频次、屌话质量、暴躁节奏。** 这不是把老何阉成客服，妈的这是少读废料、多读关键料。
+
+这版优化主要省在四个地方：
+
+| 场景 | 之前 | 现在 | 预测省幅 |
+| --- | --- | --- | --- |
+| Laohe 触发后的热路径 `SKILL.md` | 约 15,146 字符 | 约 11,830 字符 | skill 热路径约省 **21.9%** |
+| 日常嘴臭词库 | 可能整读 `profanity-keywords.md` + `diaohua-list.md`，约 28.3KB | 默认用内置高质量短语；缺新词才用 `sample-voice.mjs` 抽 5-12 条，8 条样本约 604 字符 | 词库加载部分通常省 **95%+** |
+| QualityAGENTS 参考包 | 可能误读整包，约 118KB | 先读 `index.md`，再按需读单个 command/skill 文件 | 质量参考加载通常省 **84%-97%** |
+| `.pm/intelligence.json` | 可能整份读入，当前样例约 16.8K 字符 | `query-intelligence.mjs summary` 约 298 字符；宽筛 `files laohe` 约 5.7K 字符 | 缓存查询省 **66%-98%** |
+
+实际端到端省幅要看任务类型：
+
+- **普通老何聊天/诊断**：如果以前会误读大词库，输入 token 可能少一大截；如果本来只读 `SKILL.md`，整体大概省 **5%-20%**。
+- **需要嘴臭但不调词库**：脏话密度不降，词库读取基本归零，妈的省得最明显。
+- **工程项目问答**：先用 `.pm/intelligence.json` 小片查询，再读必要源码；大项目里比全量扫代码省得更狠，常见是 **30%-80%+**，但取决于项目大小和问题具体不具体。
+- **QualityAGENTS 命令类任务**：只读 index + 具体命令，不整包吞，通常能省 **80%+** 的参考上下文。
+
+一句话：老何嘴还是脏，屌话还是密；省的是乱读、误读、全量读这些狗屎 token。
+
 ### 缓存结构示例
 
 ```json
@@ -81,6 +103,8 @@ laohe/
   assets/project-metadata/              # .pm 项目元数据模板
   scripts/
     build-intelligence.mjs              # 项目智能缓存扫描脚本
+    query-intelligence.mjs              # 项目智能缓存切片查询，别整份读
+    sample-voice.mjs                    # 从脏话/屌话库抽小样本，保质量少烧 token
     build_lifecycle_workbook.mjs        # 生命周期 Excel 工作簿生成
 scripts/install_laohe.sh                # macOS/Linux 本地安装脚本
 DEPLOY.md                               # 各种平台的详细部署说明

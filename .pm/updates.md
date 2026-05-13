@@ -41,3 +41,4 @@
 - Added `laohe/scripts/query-intelligence.mjs` so agents can inspect `.pm/intelligence.json` by summary, endpoints, models, dependencies, files, or modules without dumping the full cache.
 - Fixed the JavaScript/TypeScript extraction regex in `laohe/scripts/build-intelligence.mjs` so intelligence-cache generation works on current Node.
 - Removed tracked `.DS_Store` files and added `.gitignore` entries for common OS metadata files.
+- Updated `README.md` with predicted token-saving ranges while explicitly preserving Laohe's profanity frequency, sarcastic punch, and casual voice quality.

@@ -14,6 +14,7 @@ features:
   - "Root README in Laohe's voice for repository overview, installation, usage, and validation."
   - "Token-budget discipline that preserves Laohe's profanity and sarcastic voice quality while avoiding bulk reference loading."
   - "Small helper scripts for voice phrase sampling and targeted project-intelligence cache queries."
+  - "README token-savings forecast covering hot-path skill size, vocabulary sampling, QualityAGENTS references, and project-intelligence queries."
 requirements:
   - "Use current project directory for .pm metadata instead of fixed workspace paths."
   - "Keep material project updates documented with dated entries."
@@ -43,6 +44,7 @@ progress:
   - "Added helper scripts to sample small voice phrase sets and query project intelligence without loading full reference/cache files."
   - "Fixed the JavaScript/TypeScript extraction regex in the project-intelligence builder so cache generation runs on current Node."
   - "Ignored and removed tracked OS metadata files from the skill package."
+  - "Updated the README with predicted token-saving ranges and the explicit no-voice-quality-regression constraint."
 blockers: []
 next_actions:
   - "Open a new Codex thread after installing the laohe skill so skill discovery refreshes."
