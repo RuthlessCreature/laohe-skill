@@ -42,3 +42,10 @@
 - Fixed the JavaScript/TypeScript extraction regex in `laohe/scripts/build-intelligence.mjs` so intelligence-cache generation works on current Node.
 - Removed tracked `.DS_Store` files and added `.gitignore` entries for common OS metadata files.
 - Updated `README.md` with predicted token-saving ranges while explicitly preserving Laohe's profanity frequency, sarcastic punch, and casual voice quality.
+
+## 2026-05-15
+
+- Reworked `laohe/scripts/build-intelligence.mjs` into a v2 sharded cache builder that skips `.pm`, hidden/tool output folders, generated/build artifacts, tests, lockfiles, and oversized files by default.
+- Updated `laohe/scripts/query-intelligence.mjs` to stream module and endpoint shards from `.pm/intelligence/*.ndjson` instead of parsing the full project cache for every query.
+- Updated `laohe/SKILL.md` and `README.md` to document the performance guardrails while preserving the hard red line: do not reduce Laohe's profanity frequency, sarcastic punch, or furious casual cadence.
+- Added `.pm/intelligence/` to `.gitignore` so generated intelligence shards stay local cache data instead of repository noise.

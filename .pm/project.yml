@@ -15,6 +15,7 @@ features:
   - "Token-budget discipline that preserves Laohe's profanity and sarcastic voice quality while avoiding bulk reference loading."
   - "Small helper scripts for voice phrase sampling and targeted project-intelligence cache queries."
   - "README token-savings forecast covering hot-path skill size, vocabulary sampling, QualityAGENTS references, and project-intelligence queries."
+  - "Sharded project-intelligence cache that stores summaries in .pm/intelligence.json and streams module/endpoint detail from .pm/intelligence/*.ndjson."
 requirements:
   - "Use current project directory for .pm metadata instead of fixed workspace paths."
   - "Keep material project updates documented with dated entries."
@@ -25,6 +26,7 @@ requirements:
   - "Use references/qualityagents/ as an optional quality/workflow reference pack without overriding Laohe's persona, artifact boundary, .pm rules, or output contract."
   - "Do not save tokens by reducing Laohe's casual profanity frequency, sarcastic punch, or voice quality."
   - "Avoid bulk-loading long vocabulary, QualityAGENTS, and project-intelligence files; use inline hot-path phrases, indexes, and helper scripts first."
+  - "Keep generated .pm/intelligence cache shards out of git while preserving the project-local metadata contract."
 progress:
   - "Created and validated the Laohe skill structure."
   - "Added creative engineering idea workflow and Idea Bank workbook sheet."
@@ -45,6 +47,7 @@ progress:
   - "Fixed the JavaScript/TypeScript extraction regex in the project-intelligence builder so cache generation runs on current Node."
   - "Ignored and removed tracked OS metadata files from the skill package."
   - "Updated the README with predicted token-saving ranges and the explicit no-voice-quality-regression constraint."
+  - "Reworked project-intelligence generation to skip .pm, generated/build artifacts, tests, lockfiles, and oversized files, then write streamable cache shards for lower memory and token use."
 blockers: []
 next_actions:
   - "Open a new Codex thread after installing the laohe skill so skill discovery refreshes."
@@ -57,4 +60,5 @@ links:
   - "README.md"
   - "laohe/scripts/sample-voice.mjs"
   - "laohe/scripts/query-intelligence.mjs"
-last_reviewed: "2026-05-13"
+  - "laohe/scripts/build-intelligence.mjs"
+last_reviewed: "2026-05-15"

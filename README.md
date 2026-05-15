@@ -28,17 +28,18 @@
 
 ### 扫描什么
 
-每次老何进一个项目目录，先查 `.pm/intelligence.json`：
+每次老何进一个项目目录，先查 `.pm/intelligence.json`。新版不是把所有模块塞一个大 JSON 里当粪坑，它拆成索引 + shard：
 
-- **模块清单**：每个文件路径、语言、功能描述、导出的函数、API 端点、数据模型、依赖谁。
+- **模块清单**：每个文件路径、语言、功能描述、导出的函数、API 端点、数据模型、依赖谁、被谁依赖。
 - **API 端点**：method + path + 在哪处理的。
 - **数据模型**：interface、class、type，拎出来列清楚。
 - **技术栈**：TypeScript、Go、Python、Docker，自动检测不废话。
 - **外部依赖**：项目外面的包，import 了哪些。
+- **性能护栏**：默认跳过 `.pm`、隐藏工具目录、构建产物、生成文件、测试目录、lockfile、超过 512KB 的源码文件。
 
 ### 怎么省 token
 
-第一次扫完写进 `.pm/intelligence.json`，下次进来直接读。不再跑 glob/grep 把代码全文烧一遍。
+第一次扫完写入 `.pm/intelligence.json` 和 `.pm/intelligence/*.ndjson`，下次进来用 `query-intelligence.mjs` 流式查小片段。不再跑 glob/grep 把代码全文烧一遍，也不把缓存整份吞进上下文。
 
 缓存超过 7 天会自动重新扫。你也可以直接喊：
 
@@ -57,7 +58,7 @@
 | Laohe 触发后的热路径 `SKILL.md` | 约 15,146 字符 | 约 11,830 字符 | skill 热路径约省 **21.9%** |
 | 日常嘴臭词库 | 可能整读 `profanity-keywords.md` + `diaohua-list.md`，约 28.3KB | 默认用内置高质量短语；缺新词才用 `sample-voice.mjs` 抽 5-12 条，8 条样本约 604 字符 | 词库加载部分通常省 **95%+** |
 | QualityAGENTS 参考包 | 可能误读整包，约 118KB | 先读 `index.md`，再按需读单个 command/skill 文件 | 质量参考加载通常省 **84%-97%** |
-| `.pm/intelligence.json` | 可能整份读入，当前样例约 16.8K 字符 | `query-intelligence.mjs summary` 约 298 字符；宽筛 `files laohe` 约 5.7K 字符 | 缓存查询省 **66%-98%** |
+| 项目智能缓存 | 旧版可能把模块全塞 `.pm/intelligence.json` | 新版索引在 `.pm/intelligence.json`，模块和接口进 `.pm/intelligence/*.ndjson`，查询按行流式截断 | 大缓存查询通常省 **80%-99%** |
 
 实际端到端省幅要看任务类型：
 
@@ -72,23 +73,30 @@
 
 ```json
 {
+  "version": 2,
   "scanDate": "2026-05-13T...",
   "techStack": ["typescript", "node", "docker"],
-  "modules": [
-    {
-      "path": "src/services/auth.ts",
-      "lang": "typescript",
-      "description": "认证服务——login/logout/refreshToken三个接口，JWT发放验证",
-      "exports": ["login", "logout", "refreshToken"],
-      "endpoints": [
-        {"method": "POST", "path": "/api/auth/login"}
-      ]
-    }
-  ],
-  "apiEndpoints": [...],
-  "dataModels": ["User", "Token"],
-  "externalDeps": ["express", "jsonwebtoken"]
+  "summary": {
+    "totalModules": 128,
+    "totalEndpoints": 42,
+    "skipped": {"dirs": 16, "largeFiles": 3}
+  },
+  "files": {
+    "modules": ".pm/intelligence/modules.ndjson",
+    "endpoints": ".pm/intelligence/endpoints.ndjson",
+    "models": ".pm/intelligence/models.json",
+    "externalDeps": ".pm/intelligence/external-deps.json"
+  }
 }
+```
+
+查询示例：
+
+```bash
+node laohe/scripts/query-intelligence.mjs . summary
+node laohe/scripts/query-intelligence.mjs . files auth
+node laohe/scripts/query-intelligence.mjs . endpoints login
+node laohe/scripts/query-intelligence.mjs . deps express
 ```
 
 ## 仓库结构
