@@ -2,7 +2,10 @@
 
 老何不是摆在 Codex 旁边喊两句口号的吉祥物。老何是你他妈一人软件公司的操盘手——丢进来一个模糊目标，拧成文档、路线图、PRD、架构、测试、GTM、财务模型、客户方案，最后还他妈得有下一步，别只会热血。
 
-这个仓库的 Laohe skill 在 [`laohe/`](laohe/)，可部署到 Codex 和 opencode。
+这个仓库现在有两个可部署到 Codex 和 opencode 的 sibling skills：
+
+- [`laohe/`](laohe/)：老何本体，交付物专业，日常下水道喷粪。
+- [`xiaohe/`](xiaohe/)：小何入口，复用同一套工作法、模板、缓存和质量参考，日常说话干净直接。
 
 ## 老何管什么
 
@@ -21,6 +24,17 @@
 检查标准：如果随便删两句脏话就变成客户支持机器人的口吻，那说明不够脏，重写。
 
 一句话：**交付物干净，聊天嘴脏；活儿要能落地，废话少整。**
+
+## 老何和小何怎么选
+
+两个入口不是互相改人格，妈的是并排放着：
+
+| 入口 | 日常口吻 | 功能 |
+| --- | --- | --- |
+| `老何，...` | 暴躁、脏话高密度、阴阳怪气 | 产品、工程、项目、GTM、财务、数学、创意工程、模板、项目智能缓存、QualityAGENTS 参考 |
+| `小何，...` | 干净、直接、少废话 | 与老何同一套能力和共享资源，但不启用老何下水道口吻 |
+
+小何作为独立 `xiaohe` skill 安装，默认与 `laohe` 并排；老何原 persona 不会因为加了小何被改软。
 
 ## 项目智能缓存
 
@@ -114,6 +128,9 @@ laohe/
     query-intelligence.mjs              # 项目智能缓存切片查询，别整份读
     sample-voice.mjs                    # 从脏话/屌话库抽小样本，保质量少烧 token
     build_lifecycle_workbook.mjs        # 生命周期 Excel 工作簿生成
+xiaohe/
+  SKILL.md                              # 小何入口：同一套交付能力，干净日常口吻
+  agents/openai.yaml                    # 小何 UI 展示元数据
 scripts/install_laohe.sh                # macOS/Linux 本地安装脚本
 DEPLOY.md                               # 各种平台的详细部署说明
 ```
@@ -130,28 +147,38 @@ DEPLOY.md                               # 各种平台的详细部署说明
 
 ```bash
 ${CODEX_HOME:-$HOME/.codex}/skills/laohe
+${CODEX_HOME:-$HOME/.codex}/skills/xiaohe
 ${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/skills}/laohe
+${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/skills}/xiaohe
 ```
 
 ### Windows PowerShell
 
 ```powershell
 # Codex
-$dest = if ($env:CODEX_HOME) { Join-Path $env:CODEX_HOME "skills\laohe" } else { Join-Path $HOME ".codex\skills\laohe" }
-New-Item -ItemType Directory -Force (Split-Path $dest) | Out-Null
-if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
-Copy-Item ".\laohe" $dest -Recurse
+$codexSkills = if ($env:CODEX_HOME) { Join-Path $env:CODEX_HOME "skills" } else { Join-Path $HOME ".codex\skills" }
+$laoheDest = Join-Path $codexSkills "laohe"
+$xiaoheDest = Join-Path $codexSkills "xiaohe"
+New-Item -ItemType Directory -Force $codexSkills | Out-Null
+if (Test-Path $laoheDest) { Remove-Item $laoheDest -Recurse -Force }
+if (Test-Path $xiaoheDest) { Remove-Item $xiaoheDest -Recurse -Force }
+Copy-Item ".\laohe" $laoheDest -Recurse
+Copy-Item ".\xiaohe" $xiaoheDest -Recurse
 
 # opencode
-$odest = Join-Path $HOME ".config\opencode\skills\laohe"
-New-Item -ItemType Directory -Force (Split-Path $odest) | Out-Null
-if (Test-Path $odest) { Remove-Item $odest -Recurse -Force }
-Copy-Item ".\laohe" $odest -Recurse
+$opencodeSkills = Join-Path $HOME ".config\opencode\skills"
+$olaoheDest = Join-Path $opencodeSkills "laohe"
+$oxiaoheDest = Join-Path $opencodeSkills "xiaohe"
+New-Item -ItemType Directory -Force $opencodeSkills | Out-Null
+if (Test-Path $olaoheDest) { Remove-Item $olaoheDest -Recurse -Force }
+if (Test-Path $oxiaoheDest) { Remove-Item $oxiaoheDest -Recurse -Force }
+Copy-Item ".\laohe" $olaoheDest -Recurse
+Copy-Item ".\xiaohe" $oxiaoheDest -Recurse
 ```
 
 装完**开新对话**，别在旧会话里硬等，skill 索引只在启动时刷新。
 
-## 怎么叫老何
+## 怎么叫老何和小何
 
 直接喊：
 
@@ -159,9 +186,11 @@ Copy-Item ".\laohe" $odest -Recurse
 老何，帮我把这个产品从点子推进到 MVP 和商业化计划。
 老何，重新扫这个项目。
 老何，给这破需求磕一个然后出 PRD。
+小何，帮我把这个产品从点子推进到 MVP 和商业化计划。
+小何，重新扫这个项目，然后给我一份干净的架构摘要。
 ```
 
-适合甩给老何的活儿：
+适合甩给老何或小何的活儿：
 
 - "我有个产品想法，帮我判断做不做。"
 - "把这个项目推进到可开发的 PRD 和架构。"
@@ -179,8 +208,10 @@ Copy-Item ".\laohe" $odest -Recurse
 ./scripts/install_laohe.sh
 
 # Windows
-Copy-Item ".\laohe" $dest -Recurse -Force
-Copy-Item ".\laohe" $odest -Recurse -Force
+Copy-Item ".\laohe" $laoheDest -Recurse -Force
+Copy-Item ".\xiaohe" $xiaoheDest -Recurse -Force
+Copy-Item ".\laohe" $olaoheDest -Recurse -Force
+Copy-Item ".\xiaohe" $oxiaoheDest -Recurse -Force
 ```
 
 然后开新对话验证。老何这东西不是玄学——改了、装了、重开、验证，闭环走完才算完。

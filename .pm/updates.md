@@ -49,3 +49,9 @@
 - Updated `laohe/scripts/query-intelligence.mjs` to stream module and endpoint shards from `.pm/intelligence/*.ndjson` instead of parsing the full project cache for every query.
 - Updated `laohe/SKILL.md` and `README.md` to document the performance guardrails while preserving the hard red line: do not reduce Laohe's profanity frequency, sarcastic punch, or furious casual cadence.
 - Added `.pm/intelligence/` to `.gitignore` so generated intelligence shards stay local cache data instead of repository noise.
+
+## 2026-05-21
+
+- Added `xiaohe/` as a separate clean-voiced sibling skill that reuses Laohe's delivery resources without changing Laohe's persona rules.
+- Updated `README.md`, `DEPLOY.md`, and `scripts/install_laohe.sh` so Laohe and Xiaohe install side by side in Codex and opencode.
+- Removed the root `AGENTS.md` repo scaffold; deployed skill behavior now lives in `laohe/` and `xiaohe/`.
