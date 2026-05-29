@@ -1,11 +1,17 @@
 # 老何 Laohe Skill
 
-老何不是摆在 Codex 旁边喊两句口号的吉祥物。老何是你他妈一人软件公司的操盘手——丢进来一个模糊目标，拧成文档、路线图、PRD、架构、测试、GTM、财务模型、客户方案，最后还他妈得有下一步，别只会热血。
+老何不是摆在 Codex 旁边喊两句口号就交差的吉祥物。老何是你他妈一人软件公司的操盘手——丢进来一个模糊目标，拧成文档、路线图、PRD、架构、测试、GTM、财务模型、客户方案。交付物干净，聊天该喷粪时不省子弹。
 
-这个仓库现在有两个可部署到 Codex 和 opencode 的 sibling skills：
+## 一句话：同一个人，两张嘴
 
-- [`laohe/`](laohe/)：老何本体，交付物专业，日常下水道喷粪。
-- [`xiaohe/`](xiaohe/)：小何入口，复用同一套工作法、模板、缓存和质量参考，日常说话干净直接。
+不再分两个文件夹。**只有一个 `laohe/` skill，自带口吻开关**：
+
+| 喊法 | 日常口吻 | 能力 |
+| --- | --- | --- |
+| `老何，...` | 暴躁、脏话高密度、阴阳怪气 | 产品/工程/项目/GTM/财务/数学/创意工程/模板/智能缓存/QualityAGENTS |
+| `小何，...` | 干净、直接、少废话 | 与老何完全相同，只是不喷粪 |
+
+对话中也可以随时切："喷粪" / "下水道" / "老何模式" → 切到下水道，"文明点" / "说人话" / "小何模式" → 切回干净。不用重加载 skill。
 
 ## 老何管什么
 
@@ -25,16 +31,9 @@
 
 一句话：**交付物干净，聊天嘴脏；活儿要能落地，废话少整。**
 
-## 老何和小何怎么选
+## 小何怎么说话
 
-两个入口不是互相改人格，妈的是并排放着：
-
-| 入口 | 日常口吻 | 功能 |
-| --- | --- | --- |
-| `老何，...` | 暴躁、脏话高密度、阴阳怪气 | 产品、工程、项目、GTM、财务、数学、创意工程、模板、项目智能缓存、QualityAGENTS 参考 |
-| `小何，...` | 干净、直接、少废话 | 与老何同一套能力和共享资源，但不启用老何下水道口吻 |
-
-小何作为独立 `xiaohe` skill 安装，默认与 `laohe` 并排；老何原 persona 不会因为加了小何被改软。
+小何就是不开下水道口吻的老何。能力一模一样，但日常说话干净直接，像正常同事而不是粪坑老兵。叫"小何，帮我..." 就启动。
 
 ## 项目智能缓存
 
@@ -69,17 +68,10 @@
 
 | 场景 | 之前 | 现在 | 预测省幅 |
 | --- | --- | --- | --- |
-| Laohe 触发后的热路径 `SKILL.md` | 约 15,146 字符 | 约 11,830 字符 | skill 热路径约省 **21.9%** |
-| 日常嘴臭词库 | 可能整读 `profanity-keywords.md` + `diaohua-list.md`，约 28.3KB | 默认用内置高质量短语；缺新词才用 `sample-voice.mjs` 抽 5-12 条，8 条样本约 604 字符 | 词库加载部分通常省 **95%+** |
-| QualityAGENTS 参考包 | 可能误读整包，约 118KB | 先读 `index.md`，再按需读单个 command/skill 文件 | 质量参考加载通常省 **84%-97%** |
-| 项目智能缓存 | 旧版可能把模块全塞 `.pm/intelligence.json` | 新版索引在 `.pm/intelligence.json`，模块和接口进 `.pm/intelligence/*.ndjson`，查询按行流式截断 | 大缓存查询通常省 **80%-99%** |
-
-实际端到端省幅要看任务类型：
-
-- **普通老何聊天/诊断**：如果以前会误读大词库，输入 token 可能少一大截；如果本来只读 `SKILL.md`，整体大概省 **5%-20%**。
-- **需要嘴臭但不调词库**：脏话密度不降，词库读取基本归零，妈的省得最明显。
-- **工程项目问答**：先用 `.pm/intelligence.json` 小片查询，再读必要源码；大项目里比全量扫代码省得更狠，常见是 **30%-80%+**，但取决于项目大小和问题具体不具体。
-- **QualityAGENTS 命令类任务**：只读 index + 具体命令，不整包吞，通常能省 **80%+** 的参考上下文。
+| 热路径 `SKILL.md` | 两个 skill 文件约 229 行 | 合并为一个约 160 行 | skill 热路径省约 **30%** |
+| 日常嘴臭词库 | 可能整读 `profanity-keywords.md` + `diaohua-list.md` 约 28.3KB | 默认用内置位置分类短语；缺新词才用 `sample-voice.mjs` 抽小样本 | 词库加载省 **95%+** |
+| QualityAGENTS 参考包 | 可能误读整包约 118KB | 先读 `index.md`，再按需读单个文件 | 质量参考加载省 **84%-97%** |
+| 项目智能缓存 | 旧版可能把模块全塞一个大 JSON | 新版索引 + ndjson shard + 查询按行流式截断 | 大缓存查询省 **80%-99%** |
 
 一句话：老何嘴还是脏，屌话还是密；省的是乱读、误读、全量读这些狗屎 token。
 
@@ -117,22 +109,19 @@ node laohe/scripts/query-intelligence.mjs . deps express
 
 ```text
 laohe/
-  SKILL.md                              # skill 主说明、触发规则、下水道口吻规则
+  SKILL.md                              # skill 主说明（含老何/小何双口吻、触发规则）
   agents/openai.yaml                    # Codex UI 展示元数据
-  references/                           # 生命周期、GTM、财务、创意工程、脏话词库、屌话list
+  references/                           # 生命周期、GTM、财务、创意工程、脏话词库、QualityAGENTS
   assets/markdown/                      # 12 个生命周期阶段的 Markdown 模板
   assets/excel/                         # 客户/经营用 Excel 模板和 CSV 源
   assets/project-metadata/              # .pm 项目元数据模板
   scripts/
     build-intelligence.mjs              # 项目智能缓存扫描脚本
-    query-intelligence.mjs              # 项目智能缓存切片查询，别整份读
-    sample-voice.mjs                    # 从脏话/屌话库抽小样本，保质量少烧 token
+    query-intelligence.mjs              # 项目智能缓存切片查询
+    sample-voice.mjs                    # 脏话/屌话库小样本抽取
     build_lifecycle_workbook.mjs        # 生命周期 Excel 工作簿生成
-xiaohe/
-  SKILL.md                              # 小何入口：同一套交付能力，干净日常口吻
-  agents/openai.yaml                    # 小何 UI 展示元数据
-scripts/install_laohe.sh                # macOS/Linux 本地安装脚本
-DEPLOY.md                               # 各种平台的详细部署说明
+scripts/install_laohe.sh                # macOS/Linux 本地安装（自动铲旧 xiaohe）
+DEPLOY.md                               # 详细部署说明
 ```
 
 ## 安装到 Codex 和 opencode
@@ -145,35 +134,37 @@ DEPLOY.md                               # 各种平台的详细部署说明
 
 会同步到：
 
-```bash
+```
 ${CODEX_HOME:-$HOME/.codex}/skills/laohe
-${CODEX_HOME:-$HOME/.codex}/skills/xiaohe
 ${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/skills}/laohe
-${OPENCODE_SKILLS_DIR:-${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}/skills}/xiaohe
+```
+
+旧的 `xiaohe/` 目录会被自动铲掉。如果有旧版 xiaohe 需要手动清：
+
+```bash
+rm -rf ~/.codex/skills/xiaohe
+rm -rf ~/.config/opencode/skills/xiaohe
 ```
 
 ### Windows PowerShell
 
 ```powershell
-# Codex
 $codexSkills = if ($env:CODEX_HOME) { Join-Path $env:CODEX_HOME "skills" } else { Join-Path $HOME ".codex\skills" }
 $laoheDest = Join-Path $codexSkills "laohe"
-$xiaoheDest = Join-Path $codexSkills "xiaohe"
 New-Item -ItemType Directory -Force $codexSkills | Out-Null
 if (Test-Path $laoheDest) { Remove-Item $laoheDest -Recurse -Force }
-if (Test-Path $xiaoheDest) { Remove-Item $xiaoheDest -Recurse -Force }
 Copy-Item ".\laohe" $laoheDest -Recurse
-Copy-Item ".\xiaohe" $xiaoheDest -Recurse
+
+# 铲旧 xiaohe
+Remove-Item (Join-Path $codexSkills "xiaohe") -Recurse -Force -ErrorAction SilentlyContinue
 
 # opencode
 $opencodeSkills = Join-Path $HOME ".config\opencode\skills"
 $olaoheDest = Join-Path $opencodeSkills "laohe"
-$oxiaoheDest = Join-Path $opencodeSkills "xiaohe"
 New-Item -ItemType Directory -Force $opencodeSkills | Out-Null
 if (Test-Path $olaoheDest) { Remove-Item $olaoheDest -Recurse -Force }
-if (Test-Path $oxiaoheDest) { Remove-Item $oxiaoheDest -Recurse -Force }
 Copy-Item ".\laohe" $olaoheDest -Recurse
-Copy-Item ".\xiaohe" $oxiaoheDest -Recurse
+Remove-Item (Join-Path $opencodeSkills "xiaohe") -Recurse -Force -ErrorAction SilentlyContinue
 ```
 
 装完**开新对话**，别在旧会话里硬等，skill 索引只在启动时刷新。
@@ -190,14 +181,11 @@ Copy-Item ".\xiaohe" $oxiaoheDest -Recurse
 小何，重新扫这个项目，然后给我一份干净的架构摘要。
 ```
 
-适合甩给老何或小何的活儿：
+对话中随时切模式：
 
-- "我有个产品想法，帮我判断做不做。"
-- "把这个项目推进到可开发的 PRD 和架构。"
-- "给客户做一份 ROI 明确的方案。"
-- "想几个骚点子，但别只好玩，要能卖。"
-- "把这个工程问题形式化，给我变量、约束和决策阈值。"
-- "扫一下这项目的代码结构，告诉我都有什么模块。"
+```text
+喷粪 → 老何模式    文明点 → 小何模式
+```
 
 ## 更新
 
@@ -209,9 +197,7 @@ Copy-Item ".\xiaohe" $oxiaoheDest -Recurse
 
 # Windows
 Copy-Item ".\laohe" $laoheDest -Recurse -Force
-Copy-Item ".\xiaohe" $xiaoheDest -Recurse -Force
 Copy-Item ".\laohe" $olaoheDest -Recurse -Force
-Copy-Item ".\xiaohe" $oxiaoheDest -Recurse -Force
 ```
 
 然后开新对话验证。老何这东西不是玄学——改了、装了、重开、验证，闭环走完才算完。

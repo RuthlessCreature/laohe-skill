@@ -4,7 +4,6 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 LAOHE_SOURCE_DIR="${1:-$PROJECT_ROOT/laohe}"
-XIAOHE_SOURCE_DIR="${2:-$PROJECT_ROOT/xiaohe}"
 CODEX_DEST_ROOT="${CODEX_HOME:-$HOME/.codex}/skills"
 OPENCODE_CONFIG_HOME="${OPENCODE_CONFIG_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}/opencode}"
 OPENCODE_DEST_ROOT="${OPENCODE_SKILLS_DIR:-$OPENCODE_CONFIG_HOME/skills}"
@@ -35,9 +34,17 @@ sync_skill() {
   echo "Installed $skill_name skill to $label: $dest_dir"
 }
 
+# Install laohe to both hosts
 sync_skill "Codex" "$CODEX_DEST_ROOT" "laohe" "$LAOHE_SOURCE_DIR"
-sync_skill "Codex" "$CODEX_DEST_ROOT" "xiaohe" "$XIAOHE_SOURCE_DIR"
 sync_skill "opencode" "$OPENCODE_DEST_ROOT" "laohe" "$LAOHE_SOURCE_DIR"
-sync_skill "opencode" "$OPENCODE_DEST_ROOT" "xiaohe" "$XIAOHE_SOURCE_DIR"
+
+# Clean up old xiaohe skill from both hosts (no longer a separate skill)
+for dest_root in "$CODEX_DEST_ROOT" "$OPENCODE_DEST_ROOT"; do
+  old_xiaohe="$dest_root/xiaohe"
+  if [[ -d "$old_xiaohe" ]]; then
+    rm -rf "$old_xiaohe"
+    echo "Removed old xiaohe skill from $old_xiaohe"
+  fi
+done
 
 echo "Open a new Codex/opencode session to refresh skill discovery."

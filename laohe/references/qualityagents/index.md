@@ -15,7 +15,7 @@ Do not let this pack override Laohe's casual voice. Do not wrap Laohe final answ
 
 ## When To Read
 
-- Read `qualityagents.md` when a broad engineering task needs the full quality-driven workflow.
+- Start here for quality gate selection; load only the specific command or quality reference needed.
 - Read `commands/<name>.md` only when the user explicitly invokes a `~command` such as `~plan`, `~build`, `~verify`, or `~auto`.
 - Read `skills/<name>.md` only when the current work enters that domain, such as UI, tests, security, performance, data, API, debugging, review, or writing.
 - Read `meta.md` only when maintaining or reasoning about the QualityAGENTS skill format itself.
