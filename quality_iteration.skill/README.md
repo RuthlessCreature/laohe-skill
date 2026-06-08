@@ -128,6 +128,15 @@ python quality_iteration.skill/scripts/gate_check.py --version 0.5.0-RC --projec
 项目根目录为当前目录。
 目标版本：0.5.0-RC。
 基准版本：docs/0.4.0-RC。
-本轮目标：{写清楚目标}。
-从 Orchestrator 开始，严格按质量门推进。
+本轮目标：{写清楚本轮目标}。
+
+严格执行：
+Spec Owner → Builder → Dev Self-Check → QA Planner → QA Executor → Fixer → QA Retest → Release Judge。
+
+Builder 不准写 qa/。
+QA 不准改代码。
+Fixer 不准改 QA 标准。
+Release Judge 不准修代码。
+SKIPPED / NOT RUN 不算 PASS。
+没有 ISSUE_LIST.md 不准进入 RC。
 ```

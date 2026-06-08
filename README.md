@@ -22,6 +22,7 @@
 - **创意工程**：骚点子、跨界组合、能验证也能卖的产品楔子，不是光好玩的。
 - **项目记忆**：维护 `.pm/project.yml` 和 `.pm/updates.md`，这项目什么阶段、有什么坑、下一步该干啥，一目了然。
 - **项目智能缓存**：扫一遍代码库，把模块、函数、API、数据模型、依赖关系全写进 `.pm/intelligence.json`。下次进来直接读缓存，不用他妈重新扫一遍烧 token。
+- **质量迭代控制**：内置 `quality_iteration.skill` — 八角色多 Agent 质量门流水线：Spec → Builder → Dev Self-Check → QA Plan → QA Execute → Fix → QA Retest → Release Judge。Builder 不准写 QA、QA 不准改代码、Fixer 不改标准、Release 不修代码。没有 ISSUE_LIST 就不准发版。
 
 ## 老何怎么说话
 
@@ -120,7 +121,14 @@ laohe/
     query-intelligence.mjs              # 项目智能缓存切片查询
     sample-voice.mjs                    # 脏话/屌话库小样本抽取
     build_lifecycle_workbook.mjs        # 生命周期 Excel 工作簿生成
-scripts/install_laohe.sh                # macOS/Linux 本地安装（自动铲旧 xiaohe）
+quality_iteration.skill/                # 八角色质量门流水线 skill
+  SKILL.md
+  agents/                               # 8 个 agent 角色定义
+  templates/                            # 迭代文档模板
+  rules/                                # 核心规则：ownership/gates/severity/issue_loop/anti_self_validation
+  scripts/                              # init_iteration.py, gate_check.py
+  examples/                             # 使用示例
+scripts/install_laohe.sh                # macOS/Linux 安装（含 laohe + quality_iteration.skill，自动铲旧 xiaohe）
 DEPLOY.md                               # 详细部署说明
 ```
 
@@ -168,6 +176,8 @@ Remove-Item (Join-Path $opencodeSkills "xiaohe") -Recurse -Force -ErrorAction Si
 ```
 
 装完**开新对话**，别在旧会话里硬等，skill 索引只在启动时刷新。
+
+脚本会自动安装 `laohe` 和 `quality_iteration.skill` 两个 skill 到 Codex 和 opencode。
 
 ## 怎么叫老何和小何
 

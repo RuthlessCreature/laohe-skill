@@ -34,9 +34,15 @@ sync_skill() {
   echo "Installed $skill_name skill to $label: $dest_dir"
 }
 
+QUALITY_ITERATION_SOURCE_DIR="${1:-$PROJECT_ROOT/quality_iteration.skill}"
+
 # Install laohe to both hosts
 sync_skill "Codex" "$CODEX_DEST_ROOT" "laohe" "$LAOHE_SOURCE_DIR"
 sync_skill "opencode" "$OPENCODE_DEST_ROOT" "laohe" "$LAOHE_SOURCE_DIR"
+
+# Install quality_iteration.skill to both hosts
+sync_skill "Codex" "$CODEX_DEST_ROOT" "quality_iteration.skill" "$QUALITY_ITERATION_SOURCE_DIR"
+sync_skill "opencode" "$OPENCODE_DEST_ROOT" "quality_iteration.skill" "$QUALITY_ITERATION_SOURCE_DIR"
 
 # Clean up old xiaohe skill from both hosts (no longer a separate skill)
 for dest_root in "$CODEX_DEST_ROOT" "$OPENCODE_DEST_ROOT"; do
